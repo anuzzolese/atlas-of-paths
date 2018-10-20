@@ -1,0 +1,24 @@
+version: '2'
+services:
+  virtuoso:
+    build: ./virtuoso
+    environment:
+      SPARQL_UPDATE: "true"
+      DEFAULT_GRAPH: "https://w3id.org/italia/onto/AtlasOfPaths"
+    ports:
+      - "8890:8890"
+    restart: always
+  lode:
+    build: ./lode
+    ports:
+      - "9090:8080"
+    restart: always
+  lodview:
+    build: ./lodview
+    ports:
+      - "8181:8080"
+  httpd:
+    build: ./httpd
+    ports:
+      - "8080:80"
+    restart: always
